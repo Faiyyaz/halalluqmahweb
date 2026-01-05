@@ -54,7 +54,7 @@ const client = new Client()
   .setEndpoint(EXPO_PUBLIC_APPWRITE_ENDPOINT);
 const account = new Account(client);
 const databases = new TablesDB(client);
-const authRoutes = ["", "login", "register", "reset", "forgot"];
+const authRoutes = ["login", "register", "reset", "forgot"];
 
 export function AppWriteProvider({ children }: { children: React.ReactNode }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -96,6 +96,7 @@ export function AppWriteProvider({ children }: { children: React.ReactNode }) {
     const currentRoute = router.pathname.split("/").pop() || "";
 
     if (!loading && !loggedInUser && !authRoutes.includes(currentRoute)) {
+      console.log("hello");
       router.replace("/login");
     } else if (!loading && loggedInUser && authRoutes.includes(currentRoute)) {
       router.replace("/home");
