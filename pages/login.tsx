@@ -1,3 +1,5 @@
+import HLButton from "@/components/buttons/HLButton";
+import HLText from "@/components/text/HLText";
 import { useAppWrite } from "@/hooks/useAppWrite";
 
 export default function Login() {
@@ -11,5 +13,10 @@ export default function Login() {
     }
   }
 
-  return <button onClick={handleLogin}>Login</button>;
+  return (
+    <div>
+      <HLText variant="title" text="Login Page" />
+      <HLButton onPress={handleLogin} text="Login" />
+    </div>
+  );
 }

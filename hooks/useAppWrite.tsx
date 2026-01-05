@@ -96,9 +96,12 @@ export function AppWriteProvider({ children }: { children: React.ReactNode }) {
     const currentRoute = router.pathname.split("/").pop() || "";
 
     if (!loading && !loggedInUser && !authRoutes.includes(currentRoute)) {
-      console.log("hello");
       router.replace("/login");
-    } else if (!loading && loggedInUser && authRoutes.includes(currentRoute)) {
+    } else if (
+      !loading &&
+      loggedInUser &&
+      (currentRoute === "" || authRoutes.includes(currentRoute))
+    ) {
       router.replace("/home");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -176,6 +179,7 @@ export function AppWriteProvider({ children }: { children: React.ReactNode }) {
       });
       setLoggedInUser(null);
       setIsSubmitting(false);
+      console.log("Logged out successfully");
     } catch (error) {
       setIsSubmitting(false);
       throw error;
